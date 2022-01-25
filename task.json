@@ -1,0 +1,33 @@
+{
+    "containerDefinitions": [ 
+       { 
+          
+          "essential": true,
+          "image": "971076122335.dkr.ecr.ap-south-1.amazonaws.com/sample:SAMPLE-PROJECT-buildNumber",
+          "logConfiguration": { 
+             "logDriver": "awslogs",
+             "options": { 
+                "awslogs-group" : "/ecs/anuj-new",
+                "awslogs-region": "ap-south-1",
+                "awslogs-stream-prefix": "ecs"
+             }
+          },
+          "name": "httpd",
+          "portMappings": [ 
+             { 
+                "containerPort": 80,
+                "hostPort": 80,
+                "protocol": "tcp"
+             }
+          ]
+       }
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "executionRoleArn": "arn:aws:iam::971076122335:role/ecstasknewman",
+    "family": "anuj-new",
+    "memory": "1024",
+    "requiresCompatibilities": [ 
+        "FARGATE" 
+     ]
+ }

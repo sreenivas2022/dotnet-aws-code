@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - REPOSITORY_URI=971076122335.dkr.ecr.ap-south-1.amazonaws.com/demo
+      - DOCKER_LOGIN_PASSWORD=$(aws ecr get-login-password  --region ap-south-1)
+      - docker login -u AWS -p $DOCKER_LOGIN_PASSWORD https://971076122335.dkr.ecr.ap-south-1.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t  $REPOSITORY_URI:demo-app-${CODEBUILD_BUILD_NUMBER} .
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:demo-app-${CODEBUILD_BUILD_NUMBER}
+      - echo writing image definitions file...
+      - printf '[{"name":"demo","imageUri":"%s"}]' $REPOSITORY_URI:demo-app-${CODEBUILD_BUILD_NUMBER} > imagedefinitions.json
+      - cat imagedefinitions.json 
+      - pwd
+artifacts:
+    files: imagedefinitions.json
