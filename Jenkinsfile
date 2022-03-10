@@ -30,9 +30,9 @@ pipeline {
          aws configure set aws_secret_access_key $secret_key
          aws configure set default.region ap-south-1
          DOCKER_LOGIN_PASSWORD=$(aws ecr get-login-password  --region ap-south-1)
-         docker login -u AWS -p $DOCKER_LOGIN_PASSWORD https://971076122335.dkr.ecr.ap-south-1.amazonaws.com
-         docker build -t 971076122335.dkr.ecr.ap-south-1.amazonaws.com/sample:SAMPLE-PROJECT-${BUILD_NUMBER} .
-         docker push 971076122335.dkr.ecr.ap-south-1.amazonaws.com/sample:SAMPLE-PROJECT-${BUILD_NUMBER}
+         docker login -u AWS -p $DOCKER_LOGIN_PASSWORD https://522726045829.dkr.ecr.ap-south-1.amazonaws.com
+	 docker build -t 522726045829.dkr.ecr.ap-south-1.amazonaws.com/demo-${BUILD_NUMBER} .
+	 docker push 522726045829.dkr.ecr.ap-south-1.amazonaws.com/demo-PROJECT-${BUILD_NUMBER}
           
 	  '''
      }   
