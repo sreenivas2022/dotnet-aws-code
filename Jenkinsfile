@@ -26,6 +26,7 @@ pipeline {
         sh '''
          whoami
 	 echo $access_key
+	 echo $secret_key
          aws configure set aws_access_key_id $access_key
          aws configure set aws_secret_access_key $secret_key
          aws configure set default.region ap-south-1
