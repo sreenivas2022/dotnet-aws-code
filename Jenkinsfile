@@ -3,7 +3,7 @@ pipeline {
   triggers {
     pollSCM '* * * * *'
   }
-//   stages {
+ stages {
 //     stage('SonarQube Analysis') {
 //       steps {
 //         sh '''
