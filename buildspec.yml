@@ -19,9 +19,9 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:demo-app-${CODEBUILD_BUILD_NUMBER}
-#       - echo writing image definitions file...
-#       - printf '[{"name":"demo","imageUri":"%s"}]' $REPOSITORY_URI:demo-app-${CODEBUILD_BUILD_NUMBER} > imagedefinitions.json
-#       - cat imagedefinitions.json 
-#       - pwd
-# artifacts:
-#     files: imagedefinitions.json
+      - echo writing image definitions file...
+      - printf '[{"name":"dotnet-ecs","imageUri":"%s"}]' $REPOSITORY_URI:demo-app-${CODEBUILD_BUILD_NUMBER} > imagedefinitions.json
+      - cat imagedefinitions.json 
+      - pwd
+artifacts:
+    files: imagedefinitions.json
